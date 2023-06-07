@@ -1,3 +1,5 @@
-<h2>Olympic games app</h2>
-<hr />
-<p>{{ (olympics$ | async)?.length }} data loaded</p>
+  <div class="container">
+    <ng-container *ngIf="countryData">
+      <app-pie-chart [data]="countryData" (countrySelected)="onCountrySelected($event)"></app-pie-chart>
+    </ng-container>
+  </div>

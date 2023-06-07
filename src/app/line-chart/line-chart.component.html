@@ -1,1 +1,34 @@
-<p>line-chart works!</p>
+<div class="title">
+  <h2>{{ selectedCountry.country }}</h2>
+</div>
+
+<div class="legend-container">
+  <div class="legend">
+    <p style="color: rgb(138, 138, 138);">Number of entries</p>
+    <p style="font-weight: bold;">{{ selectedCountry.participations.length }}</p>
+  </div>
+  <div class="legend">
+    <p style="color: rgb(138, 138, 138);">Total number medals</p>
+    <p style="font-weight: bold;">{{ totalMedalsCount }}</p>
+  </div>
+  <div class="legend">
+    <p style="color: rgb(138, 138, 138);">Total number of athletes</p>
+    <p style="font-weight: bold;">{{ totalAthleteCount }}</p>
+  </div>
+</div>
+<div class="container">
+
+  <div class="chart">
+    <ngx-charts-line-chart
+      [view]="view"
+      [results]="single"
+      [xAxis]="showXAxis"
+      [yAxis]="showYAxis"
+      [showXAxisLabel]="showXAxisLabel"
+      [showYAxisLabel]="showYAxisLabel"
+      [xAxisLabel]="xAxisLabel"
+      [yAxisLabel]="yAxisLabel"
+    ></ngx-charts-line-chart>
+  </div>
+
+</div>

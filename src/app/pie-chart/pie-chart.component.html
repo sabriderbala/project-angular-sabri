@@ -1,1 +1,31 @@
-<p>pie-chart works!</p>
+<div class="title">
+  <h2>Medals per Country</h2>
+</div>
+
+<div class="legend-container">
+  <div class="legend">
+    <p style="font-size: 20px; color: rgb(138, 138, 138);">Number Of JOs</p>
+    <p style="font-weight: bold;">{{ totalJos }}</p>
+  </div>
+
+  <div class="legend">
+    <p style="font-size: 20px; color: rgb(138, 138, 138);">Number of countries</p>
+    <p style="font-weight: bold;">{{ totalCountries }}</p>
+  </div>
+</div>
+<div class="container">
+
+
+  <div class="chart d-flex">
+    <ngx-charts-pie-chart
+      [view]="[400, 400]"
+      [results]="single"
+      [legend]="false"
+      [labels]="true"
+      [doughnut]="false"
+      [explodeSlices]="false"
+      (select)="onContinue($event)"
+    >
+    </ngx-charts-pie-chart>
+  </div>
+</div>
