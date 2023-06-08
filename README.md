@@ -1,29 +1,34 @@
-# OlympicGamesStarter
+## Application Olympique
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 14.1.3.
+Cette application affiche les données olympiques de différents pays, notamment le nombre de médailles remportées par pays et le nombre total d'athlètes participants. Elle comprend également des graphiques pour visualiser ces données.
 
-Don't forget to install your node_modules before starting (`npm install`).
+# Installation
 
-## Development server
+Clonez ce dépôt de code sur votre machine locale.
+Assurez-vous d'avoir Node.js et Angular CLI installés.
+Ouvrez un terminal à la racine du projet et exécutez la commande suivante pour installer les dépendances :
+Copy code
+npm install
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
+# Exécution de l'application
 
-## Build
+Dans le même terminal, exécutez la commande suivante : ng serve
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
+L'application sera accessible à l'adresse http://localhost:4200/ dans votre navigateur.
 
-## Where to start
+# Structure du code
 
-As you can see, an architecture has already been defined for the project. It is just a suggestion, you can choose to use your own. The predefined architecture includes (in addition to the default angular architecture) the following:
+Le fichier app.module.ts définit le module principal de l'application et importe les composants nécessaires ainsi que les modules externes utilisés, tels que HttpClientModule et NgxChartsModule.
+Le fichier app.component.ts contient la logique principale de l'application. Il charge les données initiales à partir du service OlympicService et les assigne aux variables countryData et participationData. Il s'agit du composant racine de l'application.
+Le fichier app-routing.module.ts définit les routes de l'application, notamment la page d'accueil (HomeComponent) et la page de détail d'un pays (PaysDetailComponent).
+Les fichiers pie-chart.component.ts et line-chart.component.ts contiennent la logique et la présentation des composants de graphique en camembert et en ligne respectivement. Ils utilisent les données fournies par le service OlympicService et les affichent à l'aide du module NgxCharts.
+Le fichier pays-detail.component.ts est responsable de l'affichage des détails d'un pays sélectionné. Il utilise le service OlympicService pour charger les données initiales et récupère l'ID du pays à partir de l'URL. Il affiche ensuite les données correspondantes.
+Les fichiers HTML correspondants (app.component.html, pie-chart.component.html, line-chart.component.html et pays-detail.component.html) définissent la structure et le contenu des composants.
 
-- `components` folder: contains every reusable components
-- `pages` folder: contains components used for routing
-- `core` folder: contains the business logic (`services` and `models` folders)
+# Données
 
-I suggest you to start by understanding this starter code. Pay an extra attention to the `app-routing.module.ts` and the `olympic.service.ts`.
+Les données olympiques sont stockées dans le fichier olympic-data.json et sont utilisées par le service OlympicService pour fournir les données nécessaires aux composants.
 
-Once mastered, you should continue by creating the typescript interfaces inside the `models` folder. As you can see I already created two files corresponding to the data included inside the `olympic.json`. With your interfaces, improve the code by replacing every `any` by the corresponding interface.
+# Conclusion
 
-You're now ready to implement the requested features.
-
-Good luck!
+Cette application permet de visualiser les données olympiques de différents pays à l'aide de graphiques interactifs. Elle utilise Angular et les modules externes NgxCharts pour faciliter la manipulation et la présentation des données. N'hésitez pas à explorer le code source pour en savoir plus sur son fonctionnement et à apporter des améliorations selon vos besoins.
