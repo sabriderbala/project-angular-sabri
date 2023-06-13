@@ -1,8 +1,9 @@
-import { Component, Input, OnInit, Output, EventEmitter } from '@angular/core';
+import { Component, Input, OnInit, Output, EventEmitter, OnDestroy } from '@angular/core';
 import { Country } from '../core/models/Olympic';
 import { Participation } from '../core/models/Participation';
 import { OlympicService } from '../core/services/olympic.service';
 import { ActivatedRoute, Router } from '@angular/router';
+import { Subscription } from 'rxjs';
 
 
 @Component({
@@ -10,7 +11,7 @@ import { ActivatedRoute, Router } from '@angular/router';
   templateUrl: './pie-chart.component.html',
   styleUrls: ['./pie-chart.component.scss'],
 })
-export class PieChartComponent implements OnInit {
+export class PieChartComponent implements OnInit, OnDestroy {
   @Input() data!: Country[];
   @Input() countryId!: string;
   @Input() numberOfJos!: number[];
@@ -18,6 +19,7 @@ export class PieChartComponent implements OnInit {
   single!: any[];
   totalJos!: number;
   totalCountries!: number;
+  private subscription: Subscription = new Subscription();
 
   constructor(
     private olympicService: OlympicService,
@@ -30,6 +32,11 @@ export class PieChartComponent implements OnInit {
     this.processData()
     // on récupère l'id du pays dans l'url
     this.route.snapshot.paramMap.get('id') ? this.countryId = this.route.snapshot.paramMap.get('id')! : this.countryId = '0';
+  }
+
+  // on se désabonne de l'observable
+  ngOnDestroy(): void {
+    this.subscription.unsubscribe();
   }
 
   // on traite les données pour les afficher dans le graphique

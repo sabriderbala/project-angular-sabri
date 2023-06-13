@@ -1,20 +1,22 @@
-import { Component, Input, OnChanges, OnInit, SimpleChanges } from '@angular/core';
+import { Component, Input, OnChanges, OnInit, SimpleChanges, OnDestroy } from '@angular/core';
 import { Country } from '../core/models/Olympic';
 import { Participation } from '../core/models/Participation';
 import { OlympicService } from '../core/services/olympic.service';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-line-chart',
   templateUrl: './line-chart.component.html',
   styleUrls: ['./line-chart.component.scss'],
 })
-export class LineChartComponent implements OnInit, OnChanges {
+export class LineChartComponent implements OnInit, OnChanges, OnDestroy {
   @Input() data!: Country[];
   @Input() selectedCountry!: Country;
   view: [number, number] = [300, 200];
   single: any[] = [];
   totalMedalsCount!: number;
   totalAthleteCount!: number;
+  private subscription: Subscription = new Subscription();
 
 
   // options du line chart
@@ -46,6 +48,11 @@ export class LineChartComponent implements OnInit, OnChanges {
     if (changes['data'] && changes['selectedCountry']) {
       this.processData();
     }
+  }
+
+  // on se désabonne de l'observable
+  ngOnDestroy(): void {
+    this.subscription.unsubscribe();
   }
 
   // on recupere les données depuis le service
