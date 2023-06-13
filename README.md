@@ -10,6 +10,10 @@ Ouvrez un terminal à la racine du projet et exécutez la commande suivante pour
 Copy code
 npm install
 
+# Library utilisé
+
+Bibliotèque utilisé : NgxCharts
+
 # Exécution de l'application
 
 Dans le même terminal, exécutez la commande suivante : ng serve
